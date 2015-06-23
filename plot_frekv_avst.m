@@ -3,7 +3,7 @@
 %fbest er en vektor med frekvensen til de ulike linkene
 clear all
 
-NAP = 10;
+NAP = 4;
 
 [d, fbest] = distAndFreq(NAP);
 
