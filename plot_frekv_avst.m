@@ -3,9 +3,11 @@
 %fbest er en vektor med frekvensen til de ulike linkene
 clear all
 
-[d, fbest] = distAndFreq(10);
+NAP = 4;
 
-dmin = ones(1, 10) * inf; %Vector with shortest distance for connections
+[d, fbest] = distAndFreq(NAP);
+
+dmin = ones(1, NAP) * inf; %Vector with shortest distance for connections
 
 %Finding the shortest distance for connection i to j with equal frequency
 for i = 1:length(d)
@@ -71,7 +73,7 @@ for i = 1:length(d) %Rows
             end
             %plot(d(i,j), fbest(i), col)
             line([d(i,j), d(i,j)], get(gca, 'ylim'))
-            axis([0 max(max(d)) 0 11])
+            axis([0 max(max(d))+1 0 11])
         end
     end
 end
