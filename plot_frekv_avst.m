@@ -3,7 +3,7 @@
 %fbest er en vektor med frekvensen til de ulike linkene
 clear all
 
-NAP = 4;
+NAP = 10;
 
 [d, fbest] = distAndFreq(NAP);
 
@@ -21,42 +21,21 @@ end
 [smallest, index] = min(dmin);
 
 %Changing the elements of fbest to frequency channels
-if fbest(index) == 1
-    for i = 1:length(fbest)
-        switch(fbest(i))
-            case 1
-                fbest(i) = 6;
-            case 2
-                fbest(i) = 1;
-            case 3
-                fbest(i) = 11;
-        end
-    end
-    
-elseif fbest(index) == 2
-    for i = 1:length(fbest)
-        switch(fbest(i))
-            case 1
-                fbest(i) = 1;
-            case 2
-                fbest(i) = 6;
-            case 3
-                fbest(i) = 11;
-        end
-    end
-    
-elseif fbest(index) == 3
-    for i = 1:length(fbest)
-        switch(fbest(i))
-            case 1
-                fbest(i) = 1;
-            case 2
-                fbest(i) = 11;
-            case 3
-                fbest(i) = 6;
-        end
-    end
-end %if
+fbest = (fbest.*fbest) + 2;
+fbest(fbest==3) = 1;
+
+%Changing the channels so that the link with the shortest distance to
+%another link with the same frequency get channel 6. All other links on
+%that channel will also be changed to channel 6 and those links that had
+%channel 6 will get the same channel that the link with the shortest
+%distance had.
+if fbest(index) ~= 6
+    changeVar = fbest(index); %Finding the channel with shortest distance
+    fbestCopy = fbest; %Creates a copy
+    fbestCopy(fbestCopy==changeVar) = 6; %Changes all elements in fbestCopy that had value changeVar to 6
+    fbestCopy(fbest==6) = changeVar; %Changes those elements in fbestCopy that is 6 in fbestCopy and also 6 in fbest
+    fbest = fbestCopy;
+end
 
 
 hold on
