@@ -23,8 +23,10 @@ assignedFreq = 2; %Count number of assigned frequencies (Use this with nFreq to 
 
 for freq = 3:length(fbest)
     indexes = find(fbest);
-    %next_node = findSmallestDist(d, indexes)
-    %TODO: create a function that find the node with the shortest longest
-    %dist. to nodes that has a frequency assigned
+    next_link = findSmallestDist(d, indexes); %Finds next link to be assigned to a frequency
+    if assignedFreq < nFreq
+        assignedFreq = assignedFreq + 1;
+        fbest(next_link) = assignedFreq;
+    end
 end
 end
