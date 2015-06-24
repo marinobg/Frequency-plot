@@ -4,7 +4,7 @@
 clear all
 
 %Input variables
-NAP = 10;
+NAP = 6;
 nFreq = 3;
 
 d = distance(NAP);
