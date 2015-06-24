@@ -24,9 +24,12 @@ assignedFreq = 2; %Count number of assigned frequencies (Use this with nFreq to 
 for freq = 3:length(fbest)
     indexes = find(fbest);
     next_link = findSmallestDist(d, indexes); %Finds next link to be assigned to a frequency
-    if assignedFreq < nFreq
+    if assignedFreq < nFreq %Check if all available frequencies have been assigned
         assignedFreq = assignedFreq + 1;
         fbest(next_link) = assignedFreq;
+        continue
     end
+    
+    fbest(next_link) = findNextFreq(d, fbest, indexes, next_link, nFreq); % Assign frequency to the next link
 end
 end
