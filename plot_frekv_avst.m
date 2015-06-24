@@ -24,8 +24,10 @@ end
 [~, index] = min(dmin);
 
 %Changing the elements of fbest to frequency channels
-fbest = (fbest.*fbest) + 2;
-fbest(fbest==3) = 1;
+if nFreq == 3
+    fbest = (fbest.*fbest) + 2;
+    fbest(fbest==3) = 1;
+end
 
 %Changing the channels so that the link with the shortest distance to
 %another link with the same frequency get channel 6. All other links on
