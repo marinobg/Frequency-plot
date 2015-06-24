@@ -31,5 +31,6 @@ for freq = 3:length(fbest)
     end
     
     fbest(next_link) = findNextFreq(d, fbest, indexes, next_link, nFreq); % Assign frequency to the next link
+    disp(fbest)
 end
 end

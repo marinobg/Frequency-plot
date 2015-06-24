@@ -1,11 +1,14 @@
 %Lager et plott som viser de minste avstander mellom koblinger
-%a er avstandsmatrisen med korteste avstander mellom linker
+%d er avstandsmatrisen med korteste avstander mellom linker
 %fbest er en vektor med frekvensen til de ulike linkene
 clear all
 
-NAP = 4;
+%Input variables
+NAP = 10;
+nFreq = 3;
 
-[d, fbest] = distAndFreq(NAP);
+d = distance(NAP);
+fbest = frequency(d, nFreq);
 
 dmin = ones(1, NAP) * inf; %Vector with shortest distance for connections
 
@@ -18,7 +21,7 @@ for i = 1:length(d)
     end
 end
 
-[smallest, index] = min(dmin);
+[~, index] = min(dmin);
 
 %Changing the elements of fbest to frequency channels
 fbest = (fbest.*fbest) + 2;
