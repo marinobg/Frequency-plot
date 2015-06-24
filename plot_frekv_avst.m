@@ -5,7 +5,9 @@ clear all
 
 NAP = 4;
 
-[d, fbest] = distAndFreq(NAP);
+d = distance(NAP);
+
+%[d, fbest] = distAndFreq(NAP);
 
 dmin = ones(1, NAP) * inf; %Vector with shortest distance for connections
 

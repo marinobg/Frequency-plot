@@ -1,4 +1,4 @@
-function [d, fbest] = distAndFreq(NAP)
+function d = distance(NAP)
 %Finner avstandsmatrisen, d, for minste avstander mellom koblinger og
 %en vektor med frekvensfordelingen, fbest
 % genererer N radionodelokasjoner med posisjon (x,y) innenfor et område
