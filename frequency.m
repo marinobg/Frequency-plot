@@ -1,5 +1,6 @@
 function fbest = frequency(d, nFreq)
 fbest = zeros(1, length(d));
+availableFreq = 1:nFreq;
 dmin = ones(1 ,length(d))*inf;
 for i = 1:length(d)
     for j = 1:length(d)
@@ -10,14 +11,20 @@ for i = 1:length(d)
 end
 
 %Finding the closest links and assign them with different channels
-[~, index] = min(dmin);
-fbest(index) = 1;
-for i = index:length(dmin)
-    if dmin(i) == dmin(index)
-        index = i;
+[~, index1] = min(dmin);
+beginningPlot(d, fbest, min(dmin));
+fbest(index1) = randi(nFreq);
+for i = index1:length(dmin)
+    if dmin(i) == dmin(index1)
+        index2 = i;
     end
 end
-fbest(index) = 2;
+fbest(index2) = randi(nFreq);
+while fbest(index1) == fbest(index2)
+    fbest(index2) = randi(nFreq);
+end
+
+firstAssignedPlot(d, fbest, nFreq);
 
 assignedFreq = 2; %Count number of assigned frequencies (Use this with nFreq to check if all available frequencies are used)
 
@@ -26,7 +33,8 @@ for freq = 3:length(fbest)
     next_link = findSmallestDist(d, indexes); %Finds next link to be assigned to a frequency
     if assignedFreq < nFreq %Check if all available frequencies have been assigned
         assignedFreq = assignedFreq + 1;
-        fbest(next_link) = assignedFreq;
+        freqToChoose = setdiff(availableFreq, fbest);
+        fbest(next_link) = freqToChoose(randi(length(freqToChoose)));
         continue
     end
     
