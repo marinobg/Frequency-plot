@@ -9,4 +9,7 @@ switch(fbest(j))
         col = 'r';
     case 11
         col = 'g';
+    otherwise
+        col = 'b';
+end
 end
