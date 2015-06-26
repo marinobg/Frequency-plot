@@ -4,7 +4,7 @@
 clear all
 
 %Input variables
-NAP = 6;
+NAP = 10;
 nFreq = 3;
 
 d = distance(NAP);
@@ -42,21 +42,28 @@ if fbest(index) ~= 6
     fbest = fbestCopy;
 end
 
+firstAssignedPlot(d, fbest, dmin);
 
+
+%Plot shortest distances on same frequency as a cross and the other
+%distances as a vertical line
+figure
 hold on
 xlabel('Distance')
 ylabel('Frequencies')
 
+%Plot shortest distances at same frequencies
+for i = 1:length(dmin)
+    if dmin(i) ~= 0
+        col = sprintf('%s%s', color(fbest, i), 'x');
+        plot(dmin(i), fbest(i), col, 'linewidth', 15)
+    end
+end
+
 for i = 1:length(d) %Rows
     for j = 1:length(d) %Columns
         if j > i
-            %col = sprintf('%s%s', color(fbest, j), 'o');
-            if d(i,j) == dmin(i)
-                col = sprintf('%s%s', color(fbest, j), 'x');
-                plot(d(i,j), fbest(i), col, 'linewidth', 15)
-            end
-            %plot(d(i,j), fbest(i), col)
-            line([d(i,j), d(i,j)], get(gca, 'ylim'))
+            line([d(i,j), d(i,j)], [0 11])
             axis([0 max(max(d))+1 0 11])
         end
     end
