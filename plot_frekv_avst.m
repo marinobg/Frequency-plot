@@ -68,6 +68,3 @@ for i = 1:length(d) %Rows
         end
     end
 end
-
-%Fargene indikerer hvilken frekvens koblingen som er nærmest den aktuelle
-%koblingen har. Her vil blå være frekvens 1, rød 6 og grønn 11
