@@ -30,7 +30,7 @@ for i = 1:length(d)
             continue
         end
         col = sprintf('%s%s', color(fbest, i), 'o');
-        plot(d(i,j), fbest(i), col, 'linewidth', 7)
+        plot(d(i,j), fbest(i), col, 'linewidth', 4)
     end
 end
 axis([0 max(max(d))+1 0 11])
