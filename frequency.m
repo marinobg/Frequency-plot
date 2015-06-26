@@ -12,7 +12,6 @@ end
 
 %Finding the closest links and assign them with different channels
 [~, index1] = min(dmin);
-beginningPlot(d, fbest, min(dmin));
 fbest(index1) = randi(nFreq);
 for i = index1:length(dmin)
     if dmin(i) == dmin(index1)
@@ -23,8 +22,6 @@ fbest(index2) = randi(nFreq);
 while fbest(index1) == fbest(index2)
     fbest(index2) = randi(nFreq);
 end
-
-firstAssignedPlot(d, fbest, nFreq);
 
 assignedFreq = 2; %Count number of assigned frequencies (Use this with nFreq to check if all available frequencies are used)
 
