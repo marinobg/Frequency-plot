@@ -2,7 +2,7 @@ function frequency = findNextFreq(d, fbest, indexes, link, nFreq)
 frqs = 1:nFreq;
 %Finds the longest distance to a link that has been assigned with a
 %frequency for the next link that are going to get a frequency assigned
-relevantd = d(indexes, link);
+relevantd = d(indexes, link); %Arrray with only distances from links with assigned frequency to next link to be assigned a frequency
 while length(find(frqs)) > 1
     [mindist, mindex] = min(relevantd);
     relevantd(mindex) = []; %Removing shortest distances
@@ -27,5 +27,5 @@ while length(find(frqs)) > 1
     
     frqs(fbest(row)) = 0; % Removing frequencies that are closest
 end
-frequency = find(frqs);
+frequency = find(frqs); %Next frequency to be assigned
 end
