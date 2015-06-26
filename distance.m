@@ -9,9 +9,9 @@ function d = distance(NAP)
 d = zeros(NAP);
 
 
-[APx, APy, Cx, Cy, Xmin, Xmax,Ymin,Ymax ]=Building200(NAP);
+[APx, APy, Cx, Cy, Xmin, Xmax,Ymin,Ymax ]=Building200(NAP); %Get the position of every node
 
-% find the shortest distance between nett i and j
+% find the shortest distance between link i and j
 for i=1:NAP
     for j=1:NAP
         a1=sqrt((APx(i)-Cx(j))^2+(APy(i)-Cy(j))^2);
