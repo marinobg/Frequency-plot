@@ -1,7 +1,10 @@
 function fbest = frequency(d, nFreq)
+
 fbest = zeros(1, length(d));
-availableFreq = 1:nFreq;
+availableFreq = 1:nFreq; %Creates an array with available frequencies
 dmin = ones(1 ,length(d))*inf;
+
+%Finding shortest distances between links
 for i = 1:length(d)
     for j = 1:length(d)
         if i ~= j && d(i,j) < dmin(i)
@@ -26,12 +29,12 @@ end
 assignedFreq = 2; %Count number of assigned frequencies (Use this with nFreq to check if all available frequencies are used)
 
 for freq = 3:length(fbest)
-    indexes = find(fbest);
+    indexes = find(fbest); %Find links that are assigned to a frequency
     next_link = findSmallestDist(d, indexes); %Finds next link to be assigned to a frequency
     if assignedFreq < nFreq %Check if all available frequencies have been assigned
         assignedFreq = assignedFreq + 1;
-        freqToChoose = setdiff(availableFreq, fbest);
-        fbest(next_link) = freqToChoose(randi(length(freqToChoose)));
+        freqToChoose = setdiff(availableFreq, fbest); %Find frequencies that has not been used
+        fbest(next_link) = freqToChoose(randi(length(freqToChoose))); %Assign a frequency
         continue
     end
     
