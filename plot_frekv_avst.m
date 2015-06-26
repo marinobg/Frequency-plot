@@ -4,11 +4,11 @@
 clear all
 
 %Input variables
-NAP = 10;
-nFreq = 3;
+NAP = 10; %Number of AP (or number of links)
+nFreq = 3; % Number of frequencies to use
 
-d = distance(NAP);
-fbest = frequency(d, nFreq);
+d = distance(NAP); %Create a matrix with all the distances between the links
+fbest = frequency(d, nFreq); %Finding the optimal frequency allocation
 
 dmin = ones(1, NAP) * inf; %Vector with shortest distance for connections
 
@@ -23,7 +23,7 @@ end
 
 [~, index] = min(dmin);
 
-%Changing the elements of fbest to frequency channels
+%Changing the elements of fbest to frequency channels. 1 2 3 becomes 1 6 11
 if nFreq == 3
     fbest = (fbest.*fbest) + 2;
     fbest(fbest==3) = 1;
