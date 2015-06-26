@@ -12,7 +12,7 @@ while length(find(frqs)) > 1
     %If there are two links that are closest to the next link, then we
     %need to find which frequency that are second closest to the next link
     %and remove that frequency.
-    if (length(row) == 2)
+    if (length(row) == length(find(frqs)))
         mindex = find(min(relevantd));
         relevantd(mindex) = [];
         [mindist, ~] = min(relevantd);
